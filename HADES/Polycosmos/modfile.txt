@@ -1,0 +1,56 @@
+Load Priority 20
+
+Import "PolycosmosUtils.lua"
+Import "PolycosmosMessages.lua"
+Import "PolycosmosHeatManager.lua"
+Import "PolycosmosItemManager.lua"
+Import "PolycosmosEvents.lua"
+Import "PolycosmosQoL.lua"
+Import "PolycosmosROEM.lua"
+Import "PolycosmosKeepsakeManager.lua"
+Import "PolycosmosKeepsakeData.lua"
+Import "PolycosmosWeaponManager.lua"
+Import "PolycosmosAbilityData.lua"
+Import "PolycosmosAbilityManager.lua"
+Import "PolycosmosCosmeticsManager.lua"
+Import "PolycosmosVersionChecker.lua"
+Import "PolycosmosGhostAdminOverride.lua"
+Import "PolycosmosFatedListManager.lua"
+Import "PolycosmosAspectsManager.lua"
+Import "PolycosmosTrapManager.lua"
+Import "PolycosmosHelperManager.lua"
+Import "PolycosmosCodexHelper.lua"
+Import "PolycosmosMirrorManager.lua"
+Import "PolycosmosFishingManager.lua"
+Import "PolycosmosInfernalTroveManager.lua"
+
+
+To "Scripts/ConditionalItemData.lua"
+Import "Data/ConditionalItemData.lua"
+
+To "Scripts/TextLineSets.lua"
+Import "Data/TextLineSets.lua"
+
+To "Scripts/Main.lua"
+Import PolyCosmosLogoInject.lua
+
+To "Game/Animations/ObstacleAnimations.sjson"
+SJSON "Game/Animations/ObstacleAnimations.sjson"
+
+To "Game/GUI/MainMenuScreen.sjson"
+SJSON "Game/GUI/MainMenuScreen.sjson"
+
+To "Game/Text/en/PatchNotes.en.sjson"
+SJSON "Game/Text/en/PatchNotes.en.sjson"
+
+To Win/Packages/LogoInject.pkg_manifest
+Replace "Packages/LogoInject.pkg_manifest"
+
+To Win/Packages/720p/LogoInject.pkg_manifest
+Replace "Packages/LogoInject.pkg_manifest"
+
+To Win/Packages/LogoInject.pkg
+Replace "Packages/LogoInject.pkg"
+
+To Win/Packages/720p/LogoInject.pkg
+Replace "Packages/LogoInject.pkg"

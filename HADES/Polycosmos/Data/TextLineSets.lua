@@ -1,0 +1,6 @@
+table.insert(GameData.CriticalCosmetics, "Sword Weapon Unlock")
+table.insert(GameData.CriticalCosmetics, "Spear Weapon Unlock")
+table.insert(GameData.CriticalCosmetics, "Shield Weapon Unlock")
+table.insert(GameData.CriticalCosmetics, "Bow Weapon Unlock")
+table.insert(GameData.CriticalCosmetics, "Fist Weapon Unlock")
+table.insert(GameData.CriticalCosmetics, "Gun Weapon Unlock")
