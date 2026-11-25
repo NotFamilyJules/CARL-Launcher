@@ -4,6 +4,7 @@ import shutil
 import subprocess
 from pathlib import Path
 from tempfile import TemporaryDirectory
+from tkinter import filedialog
 from zipfile import ZipFile
 
 
@@ -43,9 +44,7 @@ def configure_client(source):
     return source.replace(
         '        ctx.server_task =',
         '        if os.getenv("CARL_SERVER"):\n'
-        '            import yaml\n'
-        '            with open(os.environ["CARL_PLAYER_YAML"], encoding="utf-8-sig") as player:\n'
-        '                ctx.username = yaml.safe_load(player)["name"]\n'
+        '            ctx.username = os.environ["CARL_SLOT"]\n'
         '            ctx.server_address = os.environ["CARL_SERVER"]\n'
         '        ctx.server_task =',
     )
@@ -55,11 +54,15 @@ def install_client(archipelago):
     original = Path(__file__).with_name("hades.apworld")
     installed = archipelago / "custom_worlds/hades.apworld"
     release_hash = "bbf210a05d6f8cce322db23dc50befda2b0ee7b432e65c8380777e62ae3b050f"
+    if installed.is_file():
+        installed_hash = hashlib.sha256(installed.read_bytes()).hexdigest()
+        if installed_hash == "b4346e96d34a72548572d248136f7b6794e74ff6933f1b9a7a9feeee461ae423":
+            return
+        if installed_hash not in (release_hash, "18d56a27713add9874fce7b21b75a89ed260231081e670f9f281f8031ea50962"):
+            raise ValueError("CARL doesn't recognize the provided APWorld. Installation stopped.")
     if hashlib.sha256(original.read_bytes()).hexdigest() != release_hash:
         raise ValueError("CARL needs Polycosmos 0.16.3")
 
-    if installed.is_file() and hashlib.sha256(installed.read_bytes()).hexdigest() == "18d56a27713add9874fce7b21b75a89ed260231081e670f9f281f8031ea50962":
-        return
     installed.parent.mkdir(exist_ok=True)
     with TemporaryDirectory(dir=installed.parent) as folder:
         updated = Path(folder) / original.name
@@ -70,11 +73,6 @@ def install_client(archipelago):
                     data = configure_client(data.decode("utf-8")).encode("utf-8")
                 dst.writestr(entry, data)
 
-        current = installed.read_bytes() if installed.exists() else original.read_bytes()
-        if current == updated.read_bytes():
-            return
-        if current != original.read_bytes():
-            raise ValueError("CARL doesn't recognize the provided APWorld. Installation stopped.")
         updated.replace(installed)
 
 
@@ -111,8 +109,18 @@ def install(hades_path, archipelago):
         pending.unlink(missing_ok=True)
 
 
-if __name__ == "__main__":
-    game = find_hades()
-    if game is None:
-        raise SystemExit("Feed CARL your Hades folder.")
-    install(game, Path(os.environ["ProgramData"]) / "Archipelago")
+def play(address, name, archipelago):
+    hades_path = find_hades()
+    if hades_path is None:
+        folder = filedialog.askdirectory(title="Where is Hades?")
+        if not folder:
+            return "CARL couldn't verify Hades."
+        hades_path = Path(folder)
+
+    install(hades_path, archipelago)
+    env = os.environ.copy()
+    env["CARL_SERVER"] = address
+    env["CARL_SLOT"] = name
+    env["CARL_STYX_SCRIBE"] = (hades_path / "StyxScribe.py").as_posix()
+    subprocess.Popen([archipelago / "ArchipelagoLauncher.exe", "Hades Client"], cwd=archipelago, env=env)
+    return "CARL is connecting to Hades..."
