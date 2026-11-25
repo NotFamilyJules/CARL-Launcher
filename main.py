@@ -16,7 +16,6 @@ from EMERALD import emerald
 from FACTORIO import factorio
 from HADES import hades
 from HOLLOW_KNIGHT import hollow_knight
-from PAPER_MARIO import paper_mario
 from SM64 import sm64
 from SOH import soh
 
@@ -124,7 +123,6 @@ add_game("Hades", hades.play, ARCHIPELAGO)
 add_game("Super Mario 64", sm64.play)
 add_game("Ship of Harkinian", soh.play)
 add_game("Pokemon Emerald", emerald.play, play_patch)
-add_game("Paper Mario", paper_mario.play, play_patch)
 add_game("Hollow Knight", hollow_knight.play)
 add_game("Factorio", factorio.play, ARCHIPELAGO, status)
 add_game("Donkey Kong 64", dk64.play, ARCHIPELAGO)
