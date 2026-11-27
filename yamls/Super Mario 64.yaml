@@ -101,8 +101,8 @@ Super Mario 64:
     # On - Kept in pool, potentially randomized.
     # 
     # Vanilla - Kept in pool, but NOT randomized.
-    'off': 0
-    'on': 50
+    'off': 50
+    'on': 0
     vanilla: 0
 
   enable_locked_paintings:
@@ -218,7 +218,7 @@ Super Mario 64:
     # You can define additional values between the minimum and maximum values.
     # Minimum value is 0
     # Maximum value is 70
-    50: 50
+    35: 50
     random: 0
     random-low: 0 # random value weighted towards lower values
     random-high: 0 # random value weighted towards higher values
@@ -230,7 +230,7 @@ Super Mario 64:
     # You can define additional values between the minimum and maximum values.
     # Minimum value is 0
     # Maximum value is 90
-    50: 50
+    60: 50
     random: 0
     random-low: 0 # random value weighted towards lower values
     random-high: 0 # random value weighted towards higher values

@@ -70,10 +70,10 @@ Factorio:
     automation_science_pack: 0
     logistic_science_pack: 0
     military_science_pack: 0
-    chemical_science_pack: 0
+    chemical_science_pack: 50
     production_science_pack: 0
     utility_science_pack: 0
-    space_science_pack: 50
+    space_science_pack: 0
 
   goal:
     # Goal required to complete the game.
@@ -124,14 +124,15 @@ Factorio:
 
   starting_items:
     # Mapping of Factorio internal item-name to amount granted on start.
-    burner-mining-drill: 12
-    stone-furnace: 12
-    small-electric-pole: 20
+    burner-mining-drill: 25
+    stone-furnace: 25
+    small-electric-pole: 25
     transport-belt: 50
-    steam-engine: 2
-    boiler: 1
+    inserter: 25
+    steam-engine: 6
+    boiler: 3
     offshore-pump: 1
-    pipe: 10
+    pipe: 50
     lab: 1
     raw-fish: 50
     
@@ -174,7 +175,7 @@ Factorio:
     # You can define additional values between the minimum and maximum values.
     # Minimum value is -1
     # Maximum value is 5
-    random-range--1-0: 50 # random value between -1 and 0
+    -1: 50 # always remove one ingredient slot
 
   imported_blueprints:
     # Allow or Disallow Blueprints from outside the current savegame.
